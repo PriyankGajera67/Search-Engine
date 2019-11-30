@@ -1,11 +1,25 @@
+body{
+	background: url(http://tiffanyhayesrealestategroup.com/wp-content/uploads/2019/06/light-grey-abstract-background-hd-cool-7-2.jpg);
+}
+
+.home_wrapper{
+	margin-top: 30vh;
+}
 .home_content{
 	text-align:center;
 }
 
 .home_content{
-	width: 500px;
+	width: 700px;
     margin: auto;
 }
 .search-section{
 	margin:20px 0px;
+}
+
+#query{
+	height: 50px;
+    border-radius: 28px;
+    border: 1px solid #f6f6f6;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }

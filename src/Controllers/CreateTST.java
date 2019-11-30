@@ -5,40 +5,40 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class CreateTST {
-	public static Trie trieObj;
-	public static String destPath = "C:\\Study\\Applied Computing topics\\apache-tomcat-8.5.47\\apache-tomcat-8.5.47\\webapps\\Computing-Project\\WEB-INF\\classes\\textfile";
+	public static Trie trieObject;
+	public static String destinationPath = "C:\\Study\\Applied Computing topics\\apache-tomcat-8.5.47\\apache-tomcat-8.5.47\\webapps\\Computing-Project\\WEB-INF\\classes\\textfile";
 
-	public static void createTrie() {
-		if (trieObj == null) {
+	public static void initTrie() {
+		if (trieObject == null) {
 			System.out.println("Creating Trie for first time");
 			try {
-				trieObj = new Trie();
-				File folderAF = new File(destPath);
-				File[] listOfFilesAF = folderAF.listFiles();
+				trieObject = new Trie();
+				File folder = new File(destinationPath);
+				File[] listOfFiles = folder.listFiles();
+				StringTokenizer stringToken = null;
+				String tkn;
 				String x ="";
-				String token;
-				StringTokenizer strToken = null;
-
-				for (File f : listOfFilesAF) {
+				//iteration of list of files
+				for (File f : listOfFiles) {
 					if (f.isFile()) {
 						In in = new In(f);
 						String textFiles = in.readAll();
-						Scanner sc = new Scanner(textFiles);
-						if (sc.hasNext()) {
-							x = sc.nextLine().replaceAll("[^a-zA-Z0-9]+", " ");
+						Scanner scanner = new Scanner(textFiles);
+						if (scanner.hasNext()) {
+							x = scanner.nextLine().replaceAll("[^a-zA-Z0-9]+", " ");
 						}
-						strToken = new StringTokenizer(x, " ");
+						stringToken = new StringTokenizer(x, " ");
 
-						while (strToken.hasMoreTokens()) {
+						while (stringToken.hasMoreTokens()) {
 
-							token = strToken.nextToken();
-							trieObj.insert(token.toLowerCase());
+							tkn = stringToken.nextToken();
+							trieObject.insert(tkn.toLowerCase());
 						}
 					}
 					System.out.println("Trie Initialized!");
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
 		} else {
 			System.out.println("Trie already Initialized");

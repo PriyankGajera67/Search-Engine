@@ -4,11 +4,11 @@
 <%
 	String query = request.getParameter("filter");
 	System.out.println(query);
-	List<String> wordSuggestions = AutoComplete.getData(query);
+	List<String> wordSuggestonData = AutoComplete.getAutoCompleteData(query);
 
-	Iterator<String> iterator = wordSuggestions.iterator();
-	while (iterator.hasNext()) {
-		String words = (String) iterator.next();
-		out.println(words);
+	Iterator<String> itr = wordSuggestonData.iterator();
+	while (itr.hasNext()) {
+		String wordData = (String) itr.next();
+		out.println(wordData);
 	}
 %>

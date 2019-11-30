@@ -1,6 +1,5 @@
 $("#searchButton").click(function() {
-	var data = $("#queryText").val();
-	alert("hello")
+	var data = $("#query").val();
 	$.ajax({
 		type : "POST",
 		url : "Controller.jsp",
@@ -10,14 +9,3 @@ $("#searchButton").click(function() {
 		},
 	});
 })
-$("#spellCheck").click(function() {
-	var data = $("#queryText").val();
-	checkSpelling(data);
-});
-function checkSpelling(word) {
-	alert(word)
-	var str = "";
-	BootstrapDialog.show({
-        message: $('<div></div>').load('/Computing-Project/JSP/spellCheck.jsp?word=' + word)
-    });
-}

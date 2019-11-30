@@ -7,7 +7,7 @@
 <head>
 <title>Search Engine</title>
 <%
-	CreateTST.createTrie();
+	CreateTST.initTrie();
 %>
 
 </head>
@@ -15,21 +15,26 @@
 	<div>
 		<div class="home_wrapper">
 			<div class="animate form home_form">
-				<section class="home_content" style="width: 500px">
+				<section class="home_content" style="width: 700px">
 					<form name="searchForm"
 						action="${pageContext.request.contextPath}/JSP/Controller.jsp"
 						id="homeForm" method="post">
 						<h1>Search Engine</h1>
 						<div class="search-section">
-							<input type="text" class="form-control" name="queryText"
-								id="queryText" placeholder="Search..." autocomplete='off' />
+							<input type="text" class="form-control" name="query"
+								id="query" placeholder="Search..." autocomplete='off' />
 						</div>
 						<div>
-							<button id="searchButton" type="submit"
-								class="btn btn-primary submit" name="submit" value="search">Search</button>
-							<button id="spellCheck" type="button"
-								class="btn btn-success submit" name="submit" value="Spell Check">Spelling 
-								Check</button>
+						<button id="spellCheck" type="button"
+								class="btn btn-lg btn-success submit" name="submit" value="Spell Check">
+								<i class="fa fa-check" aria-hidden="true"></i>
+								Spelling Check</button>
+								
+						<button id="searchButton" type="submit"
+								class="btn btn-lg btn-primary submit" name="submit" value="search">
+								<i class="fa fa-search" aria-hidden="true"></i>
+								Search</button>
+							
 						</div>
 						<div class="separator">
 							<br />
@@ -39,21 +44,30 @@
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/jquery.autocomplete.js"></script>
 	<script type="text/javascript">
-		$("#queryText").autocomplete("getdata.jsp", {
+	$("#spellCheck").click(function() {
+		alert('open');
+		var data = $("#query").val();
+		checkSpelling(data);
+	});
+
+	function checkSpelling(word) {
+		alert(word)
+		var str = "";
+		//var op = $('<div></div>').load('/Computing-Project/JSP/spellCheck.jsp?word=' + word);
+		var url = 'http://localhost:8080//Computing-Project/JSP/spellCheck.jsp?word=' + word;
+		window.open(url, '_blank');
+		win.focus();
+		//BootstrapDialog.show({
+	      //  message: $('<div></div>').load('/Computing-Project/JSP/spellCheck.jsp?word=' + word)
+	    //});
+	}
+
+		$("#query").autocomplete("./JSP/getdata.jsp", {
 			extraParams : {
-				filter : document.getElementById("queryText").value
+				filter : document.getElementById("query").value
 			}
 		});
 	</script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/index.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/bootstrap-dialog.min.js"></script>
 </body>
 </html>
